@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 
-import { DigitButton } from "./Buttons";
+import { range } from "./helpers/helpers";
+import { DigitButton, OperatorButton,  HandlerButton } from "./Buttons";
+
 
 class Calculator extends Component {
+
+    renderDigits = () => range(9, 1).map( digit => <DigitButton key={digit} digit={digit}/> )
 
     render() {
         return(
@@ -14,28 +18,22 @@ class Calculator extends Component {
                             * Pre-Result
                     */}
                 </div>
-                <div className="digits">
-                    {/*
-                        Buttons:
-                            * Numbers
-                            * Point
-                    */}
-                </div>
-                <div className="operations">
-                    {/*
-                        Buttons:
-                            * Division
-                            * Multiply
-                            * Minus
-                            * Plus
-                    */}
-                </div>
-                <div className="handlers">
-                    {/*
-                        Buttons:
-                            * Delete
-                            * Equal
-                    */}
+                <div className="input-wrap">
+                    <div className="digits">
+                        <DigitButton digit={0}/>
+                        <button className="btn digit dot">•</button>
+                        {this.renderDigits()}
+                    </div>
+                    <div className="operations">
+                        <OperatorButton operation="÷"/>
+                        <OperatorButton operation="×"/>
+                        <OperatorButton operation="−"/>
+                        <OperatorButton operation="+"/>
+                    </div>
+                    <div className="handlers">
+                        <HandlerButton action="C"/>
+                        <HandlerButton action="="/>
+                    </div>
                 </div>
             </div>
         )
