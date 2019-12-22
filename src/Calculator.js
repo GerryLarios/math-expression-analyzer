@@ -12,11 +12,8 @@ class Calculator extends Component {
         return(
             <div className="calculator">
                 <div className="displays">
-                    {/*
-                        Display:
-                            * Current value.
-                            * Pre-Result
-                    */}
+                    <input className="display main" type="text" />
+                    <input className="display preview" type="text" readOnly value="500"/>
                 </div>
                 <div className="input-wrap">
                     <div className="digits">
