@@ -1,20 +1,26 @@
 import React from "react";
 
 
-export function DigitButton({ digit }) {
+export function DigitButton({ digit, onClick }) {
     return(
-        <button className="btn digit">{digit}</button>
+        <button className="btn digit" onClick={() => onClick(digit)}>
+            {digit}
+        </button>
     )
 }
 
-export function OperatorButton({ operation }) {
+export function OperatorButton({ operation, onClick }) {
     return(
-        <button className="btn operator">{operation}</button>
+        <button className="btn operator" onClick={() => onClick(operation)}>
+            {operation}
+        </button>
     )
 }
 
-export function HandlerButton({ action }) {
+export function HandlerButton({ action, onClick }) {
     return (
-        <button className="btn handler">{action}</button>
+        <button className="btn handler" onClick={onClick}>
+            {action}
+        </button>
     )
 }
