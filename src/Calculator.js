@@ -21,7 +21,9 @@ class Calculator extends Component {
     }
 
     handleDigitButton(value) {
-        this.setState({ main: this.state.main + value });
+        const main = this.state.main + value;
+        if (isMathOperation(main))
+            this.setState({ main });
     }
 
     renderDigits = () => range(9, 1).map( digit => {
@@ -46,14 +48,28 @@ class Calculator extends Component {
                 <div className="input-wrap">
                     <div className="digits">
                         <DigitButton digit={0} onClick={this.handleDigitButton.bind(this)}/>
-                        <button className="btn digit dot">•</button>
+                        <button 
+                            className="btn digit dot"
+                            onClick={() => this.handleDigitButton(".")}>•</button>
                         {this.renderDigits()}
                     </div>
                     <div className="operations">
-                        <OperatorButton operation="÷" onClick={this.handleDigitButton.bind(this)}/>
-                        <OperatorButton operation="×" onClick={this.handleDigitButton.bind(this)}/>
-                        <OperatorButton operation="−" onClick={this.handleDigitButton.bind(this)}/>
-                        <OperatorButton operation="+" onClick={this.handleDigitButton.bind(this)}/>
+                        <OperatorButton
+                            digit="÷"
+                            operation="/" 
+                            onClick={this.handleDigitButton.bind(this)}/>
+                        <OperatorButton
+                            digit="×"
+                            operation="*" 
+                            onClick={this.handleDigitButton.bind(this)}/>
+                        <OperatorButton
+                            digit="−"
+                            operation="-" 
+                            onClick={this.handleDigitButton.bind(this)}/>
+                        <OperatorButton
+                            digit="+"
+                            operation="+" 
+                            onClick={this.handleDigitButton.bind(this)}/>
                     </div>
                     <div className="handlers">
                         <HandlerButton action="C"/>

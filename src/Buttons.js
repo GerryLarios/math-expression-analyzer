@@ -9,10 +9,10 @@ export function DigitButton({ digit, onClick }) {
     )
 }
 
-export function OperatorButton({ operation, onClick }) {
+export function OperatorButton({ operation, digit, onClick }) {
     return(
         <button className="btn operator" onClick={() => onClick(operation)}>
-            {operation}
+            {digit}
         </button>
     )
 }
