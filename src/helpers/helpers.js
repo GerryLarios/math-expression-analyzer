@@ -3,7 +3,5 @@ export function range(size = 10, startAt = 0) {
 }
 
 export function isMathOperation(str) {
-    return /^[\d+\-*().]*$/.test(str);
-    // /[0-9]+[\+-\*\/]/
-    // /^[0-9+\-*\/\(\)]*$/
+    return /[-+/]?(\d*\.\d+|\d+)*/.test(str);
 }
