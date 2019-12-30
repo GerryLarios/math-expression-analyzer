@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { range, isMathOperation } from "./helpers/helpers";
+import { range, isMathOperation, takeNumber } from "./helpers/helpers";
 import { DigitButton, OperatorButton,  HandlerButton } from "./Buttons";
 
 
@@ -12,6 +12,10 @@ class Calculator extends Component {
             main: "",
             preview: ""
         }
+    }
+
+    handleEqual(){
+        console.log(takeNumber(this.state.main));
     }
 
     handleOperation({ target }) {
@@ -73,7 +77,9 @@ class Calculator extends Component {
                     </div>
                     <div className="handlers">
                         <HandlerButton action="C"/>
-                        <HandlerButton action="="/>
+                        <HandlerButton 
+                            action="=" 
+                            onClick={this.handleEqual.bind(this)} />
                     </div>
                 </div>
             </div>
