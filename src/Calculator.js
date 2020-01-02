@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
-import { range, isMathOperation, takeNumber } from "./helpers/helpers";
+import { range } from "./helpers/helpers";
+import { isMathOperation, isNumber } from "./helpers/validators";
 import { DigitButton, OperatorButton,  HandlerButton } from "./Buttons";
-
+import analyzer from "./helpers/Analyzer";
 
 class Calculator extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +15,16 @@ class Calculator extends Component {
     }
 
     handleEqual(){
-        console.log(takeNumber(this.state.main));
+        const main = this.state.main;
+        if (isNumber(main[0]) && isNumber(main[main.length - 1])) {
+            console.log(analyzer(main));
+        }
+    }
+
+    handleDelete() {
+        this.setState({
+            main: this.state.main.slice(0, -1)
+        });
     }
 
     handleOperation({ target }) {
