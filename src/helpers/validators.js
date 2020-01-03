@@ -17,3 +17,7 @@ export function isOperator(char) {
 export function isHighPriority(char) {
     return char === "*" || char === "/" ? true : false;
 }
+
+export function isEmpty(str) {
+    return (!str || /^\s*$/.test(str));
+}
