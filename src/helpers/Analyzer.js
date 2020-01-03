@@ -1,4 +1,4 @@
-import { isOperator, isHighPriority, isNumber } from "./validators";
+import { isOperator, isHighPriority } from "./validators";
 
 function stringToElements(mathExpression) {
     let elements = [];
