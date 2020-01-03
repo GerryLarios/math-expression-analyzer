@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { range } from "./helpers/helpers";
-import { isMathOperation, isNumber } from "./helpers/validators";
+import { isMathOperation, isNumber, isEmpty } from "./helpers/validators";
 import { DigitButton, OperatorButton,  HandlerButton } from "./Buttons";
 import analyzer from "./helpers/Analyzer";
 
@@ -14,29 +14,36 @@ class Calculator extends Component {
         }
     }
 
-    handleEqual(){
+    updatePreview() {
         const main = this.state.main;
-        if (isNumber(main[0]) && isNumber(main[main.length - 1])) {
-            console.log(analyzer(main));
-        }
+        if (isEmpty(main))
+            this.setState({ preview: "" })
+        else if (isNumber(main[0]) && isNumber(main[main.length - 1]))
+            this.setState({ preview: analyzer(main) });
+    }
+
+    handleEqual(){
+        this.setState({
+            main: this.state.preview,
+            preview: ""
+        })
     }
 
     handleDelete() {
-        this.setState({
-            main: this.state.main.slice(0, -1)
-        });
+        const main = this.state.main.slice(0, -1);
+        this.setState({ main }, this.updatePreview);
     }
 
     handleOperation({ target }) {
         const main = target.value
         if (isMathOperation(main))
-            this.setState({ main });
+            this.setState({ main }, this.updatePreview);
     }
 
     handleDigitButton(value) {
         const main = this.state.main + value;
         if (isMathOperation(main))
-            this.setState({ main });
+            this.setState({ main }, this.updatePreview);
     }
 
     renderDigits = () => range(9, 1).map( digit => {
@@ -60,7 +67,9 @@ class Calculator extends Component {
                 </div>
                 <div className="input-wrap">
                     <div className="digits">
-                        <DigitButton digit={0} onClick={this.handleDigitButton.bind(this)}/>
+                        <DigitButton 
+                            digit={0} 
+                            onClick={this.handleDigitButton.bind(this)}/>
                         <button 
                             className="btn digit dot"
                             onClick={() => this.handleDigitButton(".")}>•</button>
@@ -85,7 +94,9 @@ class Calculator extends Component {
                             onClick={this.handleDigitButton.bind(this)}/>
                     </div>
                     <div className="handlers">
-                        <HandlerButton action="C"/>
+                        <HandlerButton
+                            action="C" 
+                            onClick={this.handleDelete.bind(this)} />
                         <HandlerButton 
                             action="=" 
                             onClick={this.handleEqual.bind(this)} />
