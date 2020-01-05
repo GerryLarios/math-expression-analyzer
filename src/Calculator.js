@@ -31,8 +31,9 @@ class Calculator extends Component {
         const history = this.state.history;
         this.setState({
             main: "" + result,
+            preview: "",
             history: history.concat([ { result, expression } ])
-        }, this.updatePreview);
+        });
     }
 
     handleDelete() {
