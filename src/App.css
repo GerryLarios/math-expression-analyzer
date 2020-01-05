@@ -1,11 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 * {
     margin: 0;
     padding: 0;
 }
 
-.calculator {
+p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.calculator, .history {
     width: 400px;
-    box-shadow: 0px 0px 20px 0px #aaaaaa;
+    border: solid 1px #d3d3d3;
+}
+
+.history {
+    overflow-y: scroll;
+}
+
+.calculator {
+    border-right: none;
+}
+
+.history-header {
+    font-size: 1.20em;
+    color: #5064d4;
+    margin-left: 20px;
+}
+
+.record {
+    text-align: right;
+    margin-top: 20px;
+    border-bottom: solid 1px #d3d3d3;
+    cursor: pointer;
+}
+
+.expression {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.result {
+    font-size: 1.3em;
+    color: #6b6b6b;
+    margin-right: 10px;;
 }
 
 .display {
